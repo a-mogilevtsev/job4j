@@ -9,10 +9,10 @@ public class Calculate {
 		
 		/**
 		 *Method main.
-		 *@param args - args.
+		 *@param arqs - args.
 		*/
 		public static void main(String[] arqs) {
-			System.out.println("Hello worls");
+			System.out.println("Hello world");
 		}
 		
 		/**
