@@ -11,7 +11,7 @@ public class Calculate {
 		 *Method main.
 		 *@param args - args.
 		*/
-		public static void main(String[] arqs){
+		public static void main(String[] arqs) {
 			System.out.println("Hello worls");
 		}
 		
