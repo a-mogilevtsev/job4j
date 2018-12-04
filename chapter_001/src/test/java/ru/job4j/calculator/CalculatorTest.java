@@ -35,7 +35,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void whenSubSixSubstractTwoThenThree() {
+    public void whenSubSixSubstractTwoThenFour() {
         Calculator calc = new Calculator();
         calc.substract(6D, 2D);
         double result = calc.getResult();
