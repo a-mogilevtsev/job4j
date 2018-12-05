@@ -20,6 +20,14 @@ public class MaxTest {
         assertThat(result, is(8));
     }
 
+    @Test
+    public void whenFirstMoreSecondAndLessThird() {
+        Max maximum = new Max();
+        int result = maximum.max(6, 2, 9);
+        int expected = 9;
+        assertThat(result, is(expected));
+    }
+
 }
 
 
