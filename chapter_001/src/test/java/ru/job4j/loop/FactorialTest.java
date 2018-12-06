@@ -13,6 +13,13 @@ public class FactorialTest {
     }
 
     @Test
+    public void whenNumberIsZeroThenFactorialIsOne() {
+        Factorial factorial = new Factorial();
+        int result = factorial.calc(0);
+        assertThat(result, is(1));
+    }
+
+    @Test
     public void whenNumberIsSixThenFactorialIs720() {
         Factorial factorial = new Factorial();
         int result = factorial.calc(6);
