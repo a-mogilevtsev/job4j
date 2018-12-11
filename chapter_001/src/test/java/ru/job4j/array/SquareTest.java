@@ -15,7 +15,6 @@ public class SquareTest {
         assertThat(result, is(expected));
     }
 
-
     @Test
     public void whenCountIs4thanA14916() {
         Square square = new Square();
