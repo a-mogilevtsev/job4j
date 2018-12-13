@@ -71,39 +71,28 @@ public class Logic {
         boolean result = false;
         for (int rowIndex = 0; rowIndex < table.length; rowIndex++) {
             boolean colWinFlag = true;
+            boolean rowWinflag = true;
             for (int columnIndex = 0; columnIndex < table[rowIndex].length; columnIndex++) {
                 //в теле этого цикла проверяется является ли выигрышной
                 //комбинация по горизонтали
                 if (table[rowIndex][columnIndex] == 0) {
                     colWinFlag = false;
                 } else {
-                    //в случае если в строке встречается 1 то вызывается
-                    //метод проверяющий выигрышность по вертикали
-                    result = checkVerticalWinCombination(table, columnIndex);
+                    for (int row = 0; row < table.length; row++) {
+                        //в теле этого цикла проверяется является ли выигрышной
+                        //комбинация по вертикали
+                        if (table[row][columnIndex] == 0) {
+                            rowWinflag = false;
+                        }
+                    }
                 }
             }
-            if (colWinFlag || result) {
+            if (colWinFlag || rowWinflag) {
                 result = true;
                 break;
             }
         }
         return result;
-    }
-
-    /**
-     *
-     * @param table исходный массив
-     * @param column индекс ячейки в строке содержащей 1.
-     * @return возвращает true если во вертикали все единицы.
-     */
-    public boolean checkVerticalWinCombination(int[][] table, int column) {
-        boolean winFlag = true;
-        for (int row = 0; row < table.length; row++) {
-            if (table[row][column] == 0) {
-                winFlag = false;
-            }
-        }
-    return winFlag;
     }
 
 
