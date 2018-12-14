@@ -69,27 +69,19 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        for (int rowIndex = 0; rowIndex < table.length; rowIndex++) {
-            boolean colWinFlag = true;
-            boolean rowWinflag = true;
-            for (int columnIndex = 0; columnIndex < table[rowIndex].length; columnIndex++) {
-                //в теле этого цикла проверяется является ли выигрышной
-                //комбинация по горизонтали
-                if (table[rowIndex][columnIndex] == 0) {
-                    colWinFlag = false;
-                } else {
-                    for (int row = 0; row < table.length; row++) {
-                        //в теле этого цикла проверяется является ли выигрышной
-                        //комбинация по вертикали
-                        if (table[row][columnIndex] == 0) {
-                            rowWinflag = false;
-                        }
-                    }
+        for (int outInd = 0; outInd < table.length; outInd++) {
+            boolean vertWinComb = true;
+            boolean horizWinComb = true;
+            for (int inInd = 0; inInd < table.length; inInd++) {
+                if (table[outInd][inInd] == 0) {
+                    horizWinComb = false;
+                }
+                if (table[inInd][outInd] == 0) {
+                    vertWinComb = false;
                 }
             }
-            if (colWinFlag || rowWinflag) {
+            if (horizWinComb || vertWinComb) {
                 result = true;
-                break;
             }
         }
         return result;
