@@ -4,8 +4,8 @@ public class Check {
     public boolean mono(boolean[] data) {
         boolean result = true;
         boolean sample = data[0];
-        for (boolean currentItem : data) {
-            if (currentItem != sample) {
+        for (boolean item : data) {
+            if (item != sample) {
                 result = false;
                 break;
             }
