@@ -2,15 +2,13 @@ package ru.job4j.Professions;
 
 
 public class House {
-    int height;
-    int width;
-    int floors;
-    int rooms;
+    private int height;
+    private int width;
+    private int floors;
+    private int rooms;
 
-    public House(int height, int width, int floors, int rooms) {
-        this.height = height;
-        this.width = width;
-        this.floors = floors;
-        this.rooms = rooms;
+
+    public House(){
+
     }
 }
