@@ -1,4 +1,4 @@
-package ru.job4j.Professions;
+package ru.job4j.professions;
 
 
 public class House {
@@ -8,7 +8,7 @@ public class House {
     private int rooms;
 
 
-    public House(){
+    public House() {
 
     }
 }
