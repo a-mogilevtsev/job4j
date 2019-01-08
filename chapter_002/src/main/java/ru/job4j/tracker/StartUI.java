@@ -101,7 +101,6 @@ public class StartUI {
         for (Item item : items) {
             System.out.println(item.getName() + " " + item.getDesc());
         }
-
     }
 
     private void editItem() {

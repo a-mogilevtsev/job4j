@@ -1,10 +1,5 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
-
-/**
- * Created by Lenovo on 12/31/2018.
- */
 public class Item {
     private String id;
     private String name;
