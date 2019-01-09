@@ -35,7 +35,7 @@ public class StartUITest {
     @Test
     public void whenFindByNameThenReturnArrayWith() {
         String[] commands = {"0", "firstName", "firstDescription", "0", "secondName", "secondDescription",
-                            "0", "firstName", "AnotherDescription", "6"};
+                "0", "firstName", "AnotherDescription", "6"};
         Input input = new StubInput(commands);
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();

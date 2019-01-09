@@ -97,6 +97,7 @@ public class StartUI {
 
     private void showAllItems() {
         System.out.println("------------ Все существующие заявки --------------");
+        System.out.flush();
         Item[] items = tracker.findAll();
         for (Item item : items) {
             System.out.println(item.getName() + " " + item.getDesc());
@@ -130,7 +131,7 @@ public class StartUI {
         String id = input.ask("Введите имя заявки");
         Item finded = tracker.findById(id);
         if (finded != null) {
-            System.out.println("Были найдена следующая заявка");
+            System.out.println("Были найдены следующие заявки");
             System.out.println(finded.getName() + " " + finded.getDesc());
 
         } else {
@@ -153,8 +154,8 @@ public class StartUI {
 
 
     private void showMenu() {
-        System.out.println("Меню.");
-        System.out.println("0. Add new Item");
+        System.out.println("Меню:");
+        System.out.println("0. Add new item");
         System.out.println("1. Show all items");
         System.out.println("2. Edit item");
         System.out.println("3. Delete item");
