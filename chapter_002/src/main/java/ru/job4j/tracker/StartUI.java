@@ -4,6 +4,9 @@ package ru.job4j.tracker;
  * Created by Lenovo on 1/2/2019.
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @version $Id$
  * @since 0.1
@@ -61,26 +64,16 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (SHOW_ALL.equals(answer)) {
-                this.showAllItems();
-            } else  if (EDIT.equals(answer)) {
-                this.editItem();
-            } else  if (DELETE.equals(answer)) {
-                this.deleteItem();
-            } else  if (FIND_BY_ID.equals(answer)) {
-                this.findItemById();
-            } else  if (FIND_BY_NAME.equals(answer)) {
-                this.findItemByName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
+        menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range.add(i);
         }
+        do {
+            menu.show();
+            menu.select(Integer.parseInt(input.ask("select:")));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     /**

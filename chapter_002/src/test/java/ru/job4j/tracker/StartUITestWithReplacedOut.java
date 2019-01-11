@@ -14,20 +14,19 @@ import java.io.PrintStream;
 public class StartUITestWithReplacedOut {
     private final PrintStream out = System.out;
     private final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    private final String menu = "Меню:" + System.lineSeparator()
-            + "0. Add new item"
+    private final String menu = "0 Add new item"
             + System.lineSeparator()
-            + "1. Show all items"
+            + "1 Show all items"
             + System.lineSeparator()
-            + "2. Edit item"
+            + "2 Edit item"
             + System.lineSeparator()
-            + "3. Delete item"
+            + "3 Delete item"
             + System.lineSeparator()
-            + "4. Find item by Id"
+            + "4 Find item by Id"
             + System.lineSeparator()
-            + "5. Find items by name"
+            + "5 Find items by name"
             + System.lineSeparator()
-            + "6. Exit Program"
+            + "6 Exit Program"
             + System.lineSeparator();
     private final String prefix = "------------ Все существующие заявки --------------"
             + System.lineSeparator();
@@ -56,35 +55,36 @@ public class StartUITestWithReplacedOut {
 
     @Test
     public void whenUserChooseShowAll() {
-        String[] commands = {"1", "6"};
+        String[] commands = {"1", "y"};
         Input sti = new StubInput(commands);
         new StartUI(sti, tracker).init();
         String expectedResult = "test1 testDescription" + System.lineSeparator()
                 + "test2 testDescription2" + System.lineSeparator()
                 + "test3 testDescription3" + System.lineSeparator();
-        Assert.assertThat(baos.toString(), is((menu + prefix + expectedResult + menu)));
+        Assert.assertThat(baos.toString(), is((menu + prefix + expectedResult)));
     }
 
     @Test
     public void whenUserAddNewItem() {
-        String[] commands = {"0", "newItem", "newDesc", "6" };
+        String[] commands = {"0", "newItem", "newDesc", "y" };
         Input sti = new StubInput(commands);
         new StartUI(sti, tracker).init();
         String id = tracker.findByName("newItem")[0].getId();
         String expectedResult = "------------ Добавление новой заявки --------------"
                 + System.lineSeparator()
-                + "------------ Новая заявка с getId : " + id + "-----------"
-                + System.lineSeparator();
-        Assert.assertThat(baos.toString(), is(menu + expectedResult + menu));
+                + "------------ New Item with Id : " + id + System.lineSeparator()
+                + "------------ New Item with Name : newItem" + System.lineSeparator()
+                + "------------ New Item with Description : newDesc" + System.lineSeparator();
+        Assert.assertThat(baos.toString(), is(menu + expectedResult));
     }
 
     @Test
-    public void whenUserFindItemByName(){
-        String[] commands = {"5", "test2" , "6"};
+    public void whenUserFindItemByName() {
+        String[] commands = {"5", "test2", "y"};
         Input sti = new StubInput(commands);
         new StartUI(sti, tracker).init();
         String expected = menu + "Были найдены следующие заявки" + System.lineSeparator()
-                + "test2 testDescription2" + System.lineSeparator() + menu;
+                + "test2 testDescription2" + System.lineSeparator();
         Assert.assertThat(baos.toString(), is(expected));
     }
 

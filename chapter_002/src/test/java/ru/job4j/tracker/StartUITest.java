@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -9,9 +10,10 @@ import static org.hamcrest.core.Is.is;
  * Created by a.mogilevtsev on 1/7/2019.
  */
 public class StartUITest {
+
     @Test
     public void whenAddItemThenItIsAdded() {
-        String[] commands = {"0", "firstName", "firstDescription", "0", "secondName", "secondDescription", "6"};
+        String[] commands = {"0", "firstName", "firstDescription", "n", "0", "secondName", "secondDescription", "y"};
         Input input = new StubInput(commands);
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
@@ -23,7 +25,7 @@ public class StartUITest {
 
     @Test
     public void whenReplaceNameThenReturnNewName() {
-        String[] commands = {"0", "firstName", "firstDescription", "0", "secondName", "secondDescription", "6"};
+        String[] commands = {"0", "firstName", "firstDescription", "n",  "0", "secondName", "secondDescription", "y"};
         Input input = new StubInput(commands);
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
@@ -32,19 +34,21 @@ public class StartUITest {
         Assert.assertThat(tracker.findByName("ReplacedName").length, is(1));
         Assert.assertThat(tracker.findByName("firstName").length, is(0));
     }
+
     @Test
     public void whenFindByNameThenReturnArrayWith() {
-        String[] commands = {"0", "firstName", "firstDescription", "0", "secondName", "secondDescription",
-                "0", "firstName", "AnotherDescription", "6"};
+        String[] commands = {"0", "firstName", "firstDescription", "n",  "0", "secondName", "secondDescription", "n",
+                "0", "firstName", "AnotherDescription", "y"};
         Input input = new StubInput(commands);
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
         Assert.assertThat(tracker.findByName("secondName").length, is(1));
         Assert.assertThat(tracker.findByName("firstName").length, is(2));
     }
+
     @Test
     public void whenRemoveItemThenReturnArrayWithout() {
-        String[] commands = {"0", "firstName", "firstDescription", "0", "secondName", "secondDescription", "6"};
+        String[] commands = {"0", "firstName", "firstDescription", "n", "0", "secondName", "secondDescription", "y"};
         Input input = new StubInput(commands);
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
@@ -52,9 +56,10 @@ public class StartUITest {
         tracker.delete(id);
         Assert.assertThat(tracker.findByName("firstName").length, is(0));
     }
+
     @Test
     public void whenFindAllThenReturnArrayWithAll() {
-        String[] commands = {"0", "test1", "testDescription", "0", "test2", "testDescription2", "6"};
+        String[] commands = {"0", "test1", "testDescription", "n", "0", "test2", "testDescription2", "y"};
         Input input = new StubInput(commands);
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
