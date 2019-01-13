@@ -67,6 +67,7 @@ public class MenuTracker {
         for (UserAction action : this.actions) {
             if (action != null) {
                 System.out.println(action.info());
+
             }
         }
     }
@@ -93,9 +94,9 @@ public class MenuTracker {
             String desc = input.ask("Please, provide item description:");
             Item item = new Item(name, desc);
             tracker.add(item);
-            System.out.println("------------ New Item with Id : " + item.getId());
-            System.out.println("------------ New Item with Name : " + item.getName());
-            System.out.println("------------ New Item with Description : " + item.getDesc());
+            System.out.println(String.format("------------ New Item with Id : %s", item.getId()));
+            System.out.println(String.format("------------ New Item with Name : %s", item.getName()));
+            System.out.println(String.format("------------ New Item with Description : %s", item.getDesc()));
         }
 
         @Override
@@ -122,9 +123,9 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Введите ключ заявки для удаления.");
             if (tracker.delete(id)) {
-                System.out.println("Заявка с ID: " + id + " удалена");
+                System.out.println(String.format("Заявка с ID: %s удалена", id));
             } else {
-                System.out.println("Заявки с ID: " + id + " не существует");
+                System.out.println(String.format("Заявки с ID: %s не существует", id));
             }
         }
 
@@ -157,7 +158,7 @@ public class MenuTracker {
                 System.out.println(finded.getName() + " " + finded.getDesc());
 
             } else {
-                System.out.println("Заявки с ID: " + id + " не существует");
+                System.out.println(String.format("Заявки с ID: %s не существует", id));
             }
         }
 
@@ -191,7 +192,7 @@ public class MenuTracker {
                     System.out.println(item.getName() + " " + item.getDesc());
                 }
             } else {
-                System.out.println("Заявки с именем: " + name + " не существует");
+                System.out.println(String.format("Заявки с именем: %s не существует", name));
             }
         }
 
@@ -254,7 +255,7 @@ public class MenuTracker {
                 Item edited = new Item(name, desc);
                 tracker.replace(id, edited);
             } else {
-                System.out.println("Заявки с ID: " + id + " не существует");
+                System.out.println(String.format("Заявки с ID: %s не существует", id));
             }
         }
 

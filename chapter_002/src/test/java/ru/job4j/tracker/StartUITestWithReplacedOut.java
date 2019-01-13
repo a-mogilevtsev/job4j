@@ -83,9 +83,10 @@ public class StartUITestWithReplacedOut {
         String[] commands = {"5", "test2", "y"};
         Input sti = new StubInput(commands);
         new StartUI(sti, tracker).init();
-        String expected = menu + "Были найдены следующие заявки" + System.lineSeparator()
-                + "test2 testDescription2" + System.lineSeparator();
-        Assert.assertThat(baos.toString(), is(expected));
+        StringBuilder expected = new StringBuilder().append(menu).append( "Были найдены следующие заявки")
+                .append(System.lineSeparator()).append("test2 testDescription2").append(
+                System.lineSeparator());
+        Assert.assertThat(baos.toString(), is(expected.toString()));
     }
 
 }

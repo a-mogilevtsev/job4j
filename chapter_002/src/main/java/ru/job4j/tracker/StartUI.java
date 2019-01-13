@@ -50,6 +50,7 @@ public class StartUI {
      */
     private final Tracker tracker;
 
+    private int[] ranges;
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
@@ -66,9 +67,11 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
+        ranges = new int[range.size()];
         menu.fillActions();
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
             range.add(i);
+            ranges[i] = i;
         }
         do {
             menu.show();
@@ -162,6 +165,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
