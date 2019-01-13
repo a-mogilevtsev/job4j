@@ -39,4 +39,17 @@ public class ValidateInputTest {
                 )
         );
     }
+    @Test
+    public void whenOutOfRangeInput() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"8", "6", "y"})
+        );
+        input.ask("Enter", new int[] {5});
+        assertThat(
+                this.mem.toString(),
+                is(
+                        String.format("Please enter valid data%n")
+                )
+        );
+    }
 }
