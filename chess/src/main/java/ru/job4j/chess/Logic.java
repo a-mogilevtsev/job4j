@@ -1,8 +1,9 @@
 package ru.job4j.chess;
 
 import ru.job4j.chess.firuges.*;
-
-import java.util.Optional;
+import ru.job4j.chess.exceptions.FigureNotFoundException;
+import ru.job4j.chess.exceptions.ImpossibleMoveException;
+import ru.job4j.chess.exceptions.OccupiedWayException;
 
 /**
  * //TODO add comments.
@@ -23,25 +24,23 @@ public class Logic {
         boolean rst = false;
         int index = this.findBy(source);
         try {
-            if (index != -1) {
-                Cell[] steps = this.figures[index].way(source, dest);
-                for (int i = 0; i < steps.length; i++) {
-                    if (this.findBy(steps[i]) != -1) {
-                        throw new OccupiedWayException("Something on the way");
-                    }
-                }
-                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                    rst = true;
-                    this.figures[index] = this.figures[index].copy(dest);
-                } else {
-                    throw new ImpossibleMoveException("You can't go like that");
-                }
-            } else {
+            if (index == -1) {
                 throw new FigureNotFoundException("There is no figure");
+            }
+            Cell[] steps = this.figures[index].way(source, dest);
+            for (int i = 0; i < steps.length; i++) {
+                if (this.findBy(steps[i]) != -1) {
+                    throw new OccupiedWayException("Something on the way");
+                }
+            }
+            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+                rst = true;
+                this.figures[index] = this.figures[index].copy(dest);
+            } else {
+                throw new ImpossibleMoveException("You can't go like that");
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            ex.printStackTrace();
         }
         return rst;
     }

@@ -1,8 +1,8 @@
-package ru.job4j.chess.firuges;
+package ru.job4j.chess.firuges.general;
 
-import ru.job4j.chess.firuges.white.KingWhite;
-
-import java.util.Map;
+import ru.job4j.chess.firuges.Cell;
+import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.exceptions.ImpossibleMoveException;
 
 /**
  * Created by a.mogilevtsev on 1/25/2019.
@@ -20,7 +20,7 @@ public abstract class King implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
+    public Cell[] way(Cell source, Cell dest) {
         int deltaX = dest.getX() - dest.getX();
         int deltaY = dest.getY() - source.getY();
         if (Math.abs(deltaX) > 1 || Math.abs(deltaY) > 1 || Math.abs(deltaX) + Math.abs(deltaY) > 2) {

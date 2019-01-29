@@ -1,7 +1,8 @@
-package ru.job4j.chess.firuges;
+package ru.job4j.chess.firuges.general;
 
-import ru.job4j.chess.Logic;
-import ru.job4j.chess.firuges.black.BishopBlack;
+import ru.job4j.chess.firuges.Cell;
+import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.exceptions.ImpossibleMoveException;
 
 /**
  * Created by a.mogilevtsev on 1/22/2019.
@@ -19,18 +20,17 @@ public abstract class Bishop implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
+    public Cell[] way(Cell source, Cell dest) {
         int deltaX = dest.getX() - source.getX();
         int deltaY = dest.getY() - source.getY();
         int stepX = Math.abs(deltaX) / deltaX;
         int stepY = Math.abs(deltaY) / deltaY;
         Cell[] result = new Cell[Math.abs(deltaX)];
-        if (isDiagonal(source, dest)) {
-            for (int index = 1; index <= Math.abs(deltaX); index++) {
-                result[index - 1] = Cell.A1.findBy(source.getX() + stepX * index, source.getY() + stepY * index);
-            }
-        } else {
+        if (!isDiagonal(source, dest)) {
             throw new ImpossibleMoveException("You can't go like that");
+        }
+        for (int index = 1; index <= Math.abs(deltaX); index++) {
+            result[index - 1] = Cell.A1.findBy(source.getX() + stepX * index, source.getY() + stepY * index);
         }
         return result;
     }

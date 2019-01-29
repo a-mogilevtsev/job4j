@@ -1,7 +1,6 @@
 package ru.job4j.chess.firuges.black;
 
-import ru.job4j.chess.Chess;
-import ru.job4j.chess.firuges.Bishop;
+import ru.job4j.chess.firuges.general.Bishop;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
