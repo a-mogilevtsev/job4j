@@ -23,14 +23,16 @@ public abstract class Bishop implements Figure {
     public Cell[] way(Cell source, Cell dest) {
         int deltaX = dest.getX() - source.getX();
         int deltaY = dest.getY() - source.getY();
-        int stepX = Math.abs(deltaX) / deltaX;
-        int stepY = Math.abs(deltaY) / deltaY;
+        int stepX, stepY;
         Cell[] result = new Cell[Math.abs(deltaX)];
         if (!isDiagonal(source, dest)) {
             throw new ImpossibleMoveException("You can't go like that");
+        } else {
+            stepX = Math.abs(deltaX) / deltaX;
+            stepY = Math.abs(deltaY) / deltaY;
         }
         for (int index = 1; index <= Math.abs(deltaX); index++) {
-            result[index - 1] = Cell.A1.findBy(source.getX() + stepX * index, source.getY() + stepY * index);
+            result[index - 1] = Cell.values()[(source.getX() + stepX * index) * 8 + (source.getY() + stepY * index)];
         }
         return result;
     }

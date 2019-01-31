@@ -20,27 +20,23 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest) throws FigureNotFoundException, OccupiedWayException, ImpossibleMoveException {
         boolean rst = false;
         int index = this.findBy(source);
-        try {
-            if (index == -1) {
-                throw new FigureNotFoundException("There is no figure");
+        if (index == -1) {
+            throw new FigureNotFoundException("There is no figure");
+        }
+        Cell[] steps = this.figures[index].way(source, dest);
+        for (int i = 0; i < steps.length; i++) {
+            if (this.findBy(steps[i]) != -1) {
+                throw new OccupiedWayException("Something on the way");
             }
-            Cell[] steps = this.figures[index].way(source, dest);
-            for (int i = 0; i < steps.length; i++) {
-                if (this.findBy(steps[i]) != -1) {
-                    throw new OccupiedWayException("Something on the way");
-                }
-            }
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
-            } else {
-                throw new ImpossibleMoveException("You can't go like that");
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        }
+        if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            rst = true;
+            this.figures[index] = this.figures[index].copy(dest);
+        } else {
+            throw new ImpossibleMoveException("You can't go like that");
         }
         return rst;
     }

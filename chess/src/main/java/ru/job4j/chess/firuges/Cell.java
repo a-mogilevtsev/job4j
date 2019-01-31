@@ -26,14 +26,4 @@ public enum Cell {
         return y;
     }
 
-    public Cell findBy(int graphX, int graphY) {
-        Cell rst = Cell.A1;
-        for (Cell cell : Cell.values()) {
-            if (cell.x == graphX && cell.y == graphY) {
-                rst = cell;
-                break;
-            }
-        }
-        return rst;
-    }
 }

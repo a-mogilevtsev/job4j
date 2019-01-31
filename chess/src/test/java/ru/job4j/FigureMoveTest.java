@@ -42,7 +42,6 @@ public class FigureMoveTest {
     public void bishopRightMove() {
         Figure bishopBlack = new BishopBlack(Cell.A1);
         logic.add(bishopBlack);
-        logic.move(Cell.A1, Cell.D5);
         Assert.assertThat(logic.move(Cell.A1, Cell.E5), is(true));
     }
 

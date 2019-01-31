@@ -41,7 +41,7 @@ public abstract class Queen implements Figure {
             stepY = deltaY > 0 ? 1 : -1;
         }
         for (int i = 1; i <= steps.length; i++) {
-            steps[i - 1] = Cell.A1.findBy(source.getX() + stepX * i, source.getY() + stepY * i);
+            steps[i - 1] = Cell.values()[(source.getX() + stepX * i) * 8 + source.getY() + stepY * i];
         }
 
         return steps;

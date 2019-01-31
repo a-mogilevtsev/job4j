@@ -13,16 +13,16 @@ public class ValidateInput implements Input {
     public int ask(String question, int[] range) {
         boolean invalid = true;
         int value = -1;
-        do{
-            try{
+        do {
+            try {
                 value = this.input.ask(question, range);
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 System.out.println("Please, enter number.");
-            } catch (MenuOutException nfe){
+            } catch (MenuOutException nfe) {
                 System.out.println("Please enter valid data");
             }
-        }while (invalid);
+        } while (invalid);
         return value;
     }
 
